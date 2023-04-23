@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Image from '../../assets/picture2_1.png';
 import Logo from '../../assets/Logo.png';
 import Frame from '../../assets/Frame.png';
@@ -14,19 +13,7 @@ import {
   Circut,
 } from './Tweet.styled';
 
-export const Tweet = ({ data }) => {
-  const [followers, setFollowers] = useState(data.followers);
-  const [isFollowed, setIsFollowed] = useState(false);
-
-  const handleFollowButtonClick = () => {
-    if (isFollowed) {
-      setFollowers(state => state - 1);
-    } else {
-      setFollowers(state => state + 1);
-    }
-    setIsFollowed(!isFollowed);
-  };
-
+export const Tweet = ({ item, followUser }) => {
   return (
     <>
       <CardWrapper>
@@ -37,16 +24,16 @@ export const Tweet = ({ data }) => {
 
         <Line />
         <Circut src={Frame} alt="Frame" />
-        <UserAvatar src={data.avatar} alt="User Avatar" />
+        <UserAvatar src={item.avatar} alt="User Avatar" />
 
-        <CardText>{data.tweets} tweets </CardText>
-        <CardText> {followers.toLocaleString('en-US')} followers </CardText>
-        {!isFollowed ? (
-          <FollowButton onClick={handleFollowButtonClick} type="button">
+        <CardText>{item.tweets} tweets </CardText>
+        <CardText>{item.followers.toLocaleString('en-US')} followers </CardText>
+        {!item.isFollowed ? (
+          <FollowButton onClick={() => followUser(item)} type="button">
             follow
           </FollowButton>
         ) : (
-          <FollowingButton onClick={handleFollowButtonClick} type="button">
+          <FollowingButton onClick={() => followUser(item)} type="button">
             following
           </FollowingButton>
         )}

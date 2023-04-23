@@ -1,16 +1,19 @@
- const Home = () => {
+import HomeLogo from '../assets/picture2_1.png';
+
+const Home = () => {
   return (
-    <main>
-      <h1>Welcome</h1>
-      <img src="https://via.placeholder.com/960x240" alt="" />
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iusto,
-        laboriosam placeat incidunt rem illum animi nemo quibusdam quia
-        voluptatum voluptate.
-      </p>
+    <main
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <h1>Welcome to tweets</h1>
+      <img src={HomeLogo} alt="Logo" />
     </main>
   );
 };
 
 export default Home;
-
