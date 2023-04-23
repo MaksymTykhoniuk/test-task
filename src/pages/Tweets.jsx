@@ -15,14 +15,34 @@ const fetchTweets = async page => {
 const Tweets = () => {
   const [page, setPage] = useState(1);
 
+  // const [data, setData] = useState([]);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [error, setError] = useState(null);
+  // const fT = async page => {
+  //   try {
+  //     setIsLoading(true);
+  //     const resp = await axios.get(
+  //       `https://64302a62c26d69edc88c56e4.mockapi.io/api/v1/users?page=${page}&limit=3`
+  //     );
+
+  //     setData(resp.data);
+  //   } catch (error) {
+  //     setError(error);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+  // useEffect(() => {
+  //   fT(page);
+  // }, [page]);
+
   const { data, isLoading, isError } = useQuery(
     ['users', page],
     () => fetchTweets(page),
     { keepPreviousData: true }
   );
 
-  console.log('allTweets', data);
-
+  // console.log('data', data);
   const handleLoadNextBtn = () => {
     setPage(prev => prev + 1);
   };
@@ -32,16 +52,15 @@ const Tweets = () => {
   };
 
   if (isLoading) {
-    return <p>loadin......</p>;
+    return <p>loading......</p>;
   }
 
   if (isError) {
-    return <p>errrrrroooororo;</p>;
+    return <p>errrrrroooor;</p>;
   }
 
   return (
     <main>
-      {/* <SearchBox value={productName} onChange={updateQueryString} /> */}
       <TweetsList data={data} />
       <ButtonWrapper>
         <Button disabled={page === 1} onClick={handleLoadPrevBtn} type="button">
@@ -85,5 +104,5 @@ const Button = styled.button`
 
 const ButtonWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 `;

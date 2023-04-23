@@ -40,7 +40,7 @@ export const Tweet = ({ data }) => {
         <UserAvatar src={data.avatar} alt="User Avatar" />
 
         <CardText>{data.tweets} tweets </CardText>
-        <CardText>{followers} followers </CardText>
+        <CardText> {followers.toLocaleString('en-US')} followers </CardText>
         {!isFollowed ? (
           <FollowButton onClick={handleFollowButtonClick} type="button">
             follow
