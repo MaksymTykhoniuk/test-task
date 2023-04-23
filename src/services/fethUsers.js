@@ -1,0 +1,23 @@
+import axios from 'axios';
+
+export const fetchTweets = async page => {
+  const { data } = await axios.get(
+    `https://64302a62c26d69edc88c56e4.mockapi.io/api/v1/users?page=${page}&limit=3`
+  );
+
+  return data;
+};
+
+export const togglefollowUser = async user => {
+  const { data } = await axios.put(
+    `https://64302a62c26d69edc88c56e4.mockapi.io/api/v1/users/${user.id}`,
+    {
+      ...user,
+      isFollowed: !user.isFollowed,
+      followers: user.isFollowed
+        ? (user.followers -= 1)
+        : (user.followers += 1),
+    }
+  );
+  return data;
+};

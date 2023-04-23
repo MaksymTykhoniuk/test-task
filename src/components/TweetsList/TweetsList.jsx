@@ -1,37 +1,19 @@
-import axios from 'axios';
 import { Tweet } from '../Tweet/Tweet';
+import { BackLink } from '../BackLink/BackLink';
+import { useLocation } from 'react-router-dom';
 import { Container, TweetsUsersList } from './TweetsList.styled';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { useState } from 'react';
 import styled from '@emotion/styled';
-
-const fetchTweets = async page => {
-  const { data } = await axios.get(
-    `https://64302a62c26d69edc88c56e4.mockapi.io/api/v1/users?page=${page}&limit=3`
-  );
-
-  return data;
-};
-
-const followUser = async user => {
-  const { data } = await axios.put(
-    `https://64302a62c26d69edc88c56e4.mockapi.io/api/v1/users/${user.id}`,
-    {
-      ...user,
-      isFollowed: !user.isFollowed,
-      followers: user.isFollowed
-        ? (user.followers -= 1)
-        : (user.followers += 1),
-    }
-  );
-  return data;
-};
+import { fetchTweets, togglefollowUser } from 'services/fethUsers';
 
 export const TweetsList = () => {
   const [page, setPage] = useState(1);
   const queryClient = useQueryClient();
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/home';
 
-  const updateTweetsMutation = useMutation(item => followUser(item), {
+  const updateTweetsMutation = useMutation(item => togglefollowUser(item), {
     onSuccess: () => {
       queryClient.invalidateQueries('users');
     },
@@ -51,15 +33,17 @@ export const TweetsList = () => {
   };
 
   if (isLoading) {
-    return <p>loading......</p>;
+    return <p>loading page......</p>;
   }
 
   if (isError) {
-    return <p>errrrrroooor;</p>;
+    return <p>oooops, something goes wrong 😣</p>;
   }
 
   return (
     <Container>
+      <BackLink to={backLinkHref}>Back home</BackLink>
+
       <TweetsUsersList>
         {data.map(item => (
           <Tweet key={item.id} item={item} followUser={handleFollowUser} />
@@ -71,14 +55,14 @@ export const TweetsList = () => {
           onClick={handleLoadPrevBtn}
           type="button"
         >
-          loadprev
+          load previous
         </Button>
         <Button
           disabled={isLoading || page === 8}
           onClick={handleLoadNextBtn}
           type="button"
         >
-          loadnext
+          load next
         </Button>
       </ButtonWrapper>
     </Container>
