@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import Select from 'react-select';
 
 export const Container = styled.div`
   max-width: 1200px;
@@ -13,6 +14,32 @@ export const TweetsUsersList = styled.ul`
   align-items: center;
   justify-content: space-evenly;
   padding: 0;
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const FilterWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  width: 390px;
+  justify-content: space-between;
+`;
+
+export const FilterHeading = styled.h2`
+  color: black;
+  font-size: 16px;
+  text-decoration: none;
+  font-weight: 500;
+  text-transform: uppercase;
+`;
+
+export const Filter = styled(Select)`
+  width: 230px;
+  primary25: '#471ca9';
 `;
 
 export const CardWrapper = styled.li`
