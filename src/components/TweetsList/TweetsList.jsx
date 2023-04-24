@@ -51,7 +51,11 @@ export const TweetsList = () => {
     { keepPreviousData: true }
   );
 
-  const { data: filter, isFetched } = useQuery(
+  const {
+    data: filter,
+    isError: filterError,
+    isFetched,
+  } = useQuery(
     ['users', selectedOption],
     () => fetchfilteredTweets(selectedOption),
     { keepPreviousData: true }
@@ -84,7 +88,7 @@ export const TweetsList = () => {
           <Tweet key={item.id} item={item} followUser={handleFollowUser} />
         ))}
       </TweetsUsersList>
-      {isFetched && filter.length > 3 && (
+      {isFetched && !filterError && filter.length > 3 && (
         <ButtonWrapper>
           <Button
             disabled={isLoading || page === 1}
