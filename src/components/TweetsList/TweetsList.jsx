@@ -95,14 +95,14 @@ export const TweetsList = () => {
             onClick={handleLoadPrevBtn}
             type="button"
           >
-            load previous
+            previous
           </Button>
           <Button
             disabled={isLoading || page === filter.length / 3}
             onClick={handleLoadNextBtn}
             type="button"
           >
-            load next
+            next
           </Button>
         </ButtonWrapper>
       )}

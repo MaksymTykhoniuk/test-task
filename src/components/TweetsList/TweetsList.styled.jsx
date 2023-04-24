@@ -137,6 +137,11 @@ export const Button = styled.button`
 
   text-transform: uppercase;
   color: #373737;
+
+  :disabled {
+    color: #8e8e8e;
+    background-color: #e2e2e2;
+  }
 `;
 
 export const ButtonWrapper = styled.div`
