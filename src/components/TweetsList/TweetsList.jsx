@@ -34,14 +34,10 @@ export const TweetsList = () => {
   const backLinkHref = location.state?.from ?? '/home';
 
   useEffect(() => {
-    if (selectedOption.value === 'all') {
-      setPage(1);
-    } else if (selectedOption.value === 'follow') {
-      setPage(1);
-    } else if (selectedOption.value === 'following') {
+    if (selectedOption) {
       setPage(1);
     }
-  }, [selectedOption.value]);
+  }, [selectedOption]);
 
   const updateTweetsMutation = useMutation(item => togglefollowUser(item), {
     onSuccess: () => {
@@ -92,11 +88,13 @@ export const TweetsList = () => {
           />
         </FilterWrapper>
       </Wrapper>
+
       <TweetsUsersList>
         {data.map(item => (
           <Tweet key={item.id} item={item} followUser={handleFollowUser} />
         ))}
       </TweetsUsersList>
+
       {isFetched && !filterError && filter.length > 3 && (
         <ButtonWrapper>
           <Button
