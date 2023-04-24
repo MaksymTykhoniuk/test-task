@@ -12,6 +12,7 @@ export const TweetsUsersList = styled.ul`
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-evenly;
+  padding: 0;
 `;
 
 export const CardWrapper = styled.li`
