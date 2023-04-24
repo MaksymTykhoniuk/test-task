@@ -1,16 +1,20 @@
-import { Tweet } from '../Tweet/Tweet';
-import { BackLink } from '../BackLink/BackLink';
-import { useLocation } from 'react-router-dom';
-import { Container, TweetsUsersList } from './TweetsList.styled';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 import { useState, useEffect } from 'react';
-import styled from '@emotion/styled';
+import { useLocation } from 'react-router-dom';
+import Select from 'react-select';
+import { Tweet } from '../Tweet/Tweet';
+import { BackLink } from '../BackLink/BackLink';
+import {
+  Container,
+  TweetsUsersList,
+  Button,
+  ButtonWrapper,
+} from './TweetsList.styled';
 import {
   fetchTweets,
   togglefollowUser,
   fetchfilteredTweets,
 } from 'services/fethUsers';
-import Select from 'react-select';
 
 const options = [
   { value: 'all', label: 'All' },
@@ -101,34 +105,3 @@ export const TweetsList = () => {
     </Container>
   );
 };
-
-const Button = styled.button`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 14px 28px;
-  gap: 6px;
-
-  position: relative;
-  width: 196px;
-  height: 50px;
-  margin-top: 18px;
-  margin-bottom: 36px;
-
-  box-shadow: 0px 3.43693px 3.43693px rgba(0, 0, 0, 0.25);
-  border-radius: 10.3108px;
-
-  font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 1.2;
-
-  text-transform: uppercase;
-  color: #373737;
-`;
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-`;

@@ -22,8 +22,10 @@ export const Header = styled.header`
   }
 `;
 
-export const Logo = styled.div`
+export const Logo = styled(NavLink)`
   font-weight: 700;
+  text-decoration: none;
+  color: black;
 `;
 
 export const Link = styled(NavLink)`
