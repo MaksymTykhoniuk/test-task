@@ -16,7 +16,9 @@ export const fetchTweets = async (page, filter) => {
     );
 
     return data;
-  } catch (error) {}
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
 export const fetchfilteredTweets = async filter => {
@@ -36,7 +38,7 @@ export const fetchfilteredTweets = async filter => {
 
     return data;
   } catch (error) {
-    alert(error);
+    throw new Error(error);
   }
 };
 
@@ -54,6 +56,6 @@ export const togglefollowUser = async user => {
     );
     return data;
   } catch (error) {
-    alert(error);
+    throw new Error(error);
   }
 };
