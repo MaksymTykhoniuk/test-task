@@ -31,7 +31,7 @@ export const TweetsList = () => {
   const [page, setPage] = useState(1);
   const queryClient = useQueryClient();
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/home';
+  const backLinkHref = location.state?.from ?? '/';
 
   useEffect(() => {
     if (selectedOption) {
